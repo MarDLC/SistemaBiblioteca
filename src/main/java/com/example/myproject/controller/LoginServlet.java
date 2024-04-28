@@ -23,10 +23,9 @@ public class LoginServlet extends HttpServlet {
 
             if (rs.next()) {
                 // L'utente è autenticato con successo. Reindirizza alla pagina principale.
-                response.sendRedirect("/#");
+                response.sendRedirect("home.jsp");
             } else {
                 // Autenticazione fallita. Reindirizza alla pagina di login con un messaggio di errore.
-                System.out.println("utente non registrato");
                 request.setAttribute("errorMessage", "Invalid username or password.");
                 request.getRequestDispatcher("/login_registrazione.jsp").forward(request, response);
             }

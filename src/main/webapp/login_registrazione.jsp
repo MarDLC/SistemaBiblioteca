@@ -4,25 +4,27 @@
     <title>Login/Signup</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        html,body{
+
+        html,body {
             display: grid;
             height: 100%;
             width: 100%;
             place-items: center;
-            background: -webkit-linear-gradient(left, #ff00ff,#004080, #ff00ff
-            , #0073e6);
+            background: -webkit-linear-gradient(left, #f2e6ff, #663399); /* Gradient viola */
         }
-        ::selection{
-            background: #1a75ff;
+
+        ::selection {
+            background: #1a75ff; /* Selezione testo */
             color: #fff;
         }
-        .wrapper{
+
+        .wrapper {
             overflow: hidden;
             max-width: 390px;
             background: #fff;
@@ -30,18 +32,21 @@
             border-radius: 15px;
             box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
         }
-        .wrapper .title-text{
+
+        .wrapper .title-text {
             display: flex;
             width: 200%;
         }
-        .wrapper .title{
+
+        .wrapper .title {
             width: 50%;
             font-size: 35px;
             font-weight: 600;
             text-align: center;
             transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
         }
-        .wrapper .slide-controls{
+
+        .wrapper .slide-controls {
             position: relative;
             display: flex;
             height: 50px;
@@ -52,7 +57,8 @@
             border: 1px solid lightgrey;
             border-radius: 15px;
         }
-        .slide-controls .slide{
+
+        .slide-controls .slide {
             height: 100%;
             width: 100%;
             color: #fff;
@@ -64,59 +70,71 @@
             z-index: 1;
             transition: all 0.6s ease;
         }
-        .slide-controls label.signup{
+
+        .slide-controls label.signup {
             color: #000;
         }
-        .slide-controls .slider-tab{
+
+        .slide-controls .slider-tab {
             position: absolute;
             height: 100%;
             width: 50%;
             left: 0;
             z-index: 0;
             border-radius: 15px;
-            background: -webkit-linear-gradient(left, #ff00ff,#004080, #ff00ff
-            , #0073e6);
+            background: -webkit-linear-gradient(left, #f2e6ff, #663399); /* Gradient viola */
             transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
         }
-        input[type="radio"]{
+
+        input[type="radio"] {
             display: none;
         }
-        #signup:checked ~ .slider-tab{
+
+        #signup:checked ~ .slider-tab {
             left: 50%;
         }
-        #signup:checked ~ label.signup{
+
+        #signup:checked ~ label.signup {
             color: #fff;
             cursor: default;
             user-select: none;
         }
-        #signup:checked ~ label.login{
+
+        #signup:checked ~ label.login {
             color: #000;
         }
-        #login:checked ~ label.signup{
+
+        #login:checked ~ label.signup {
             color: #000;
         }
-        #login:checked ~ label.login{
+
+        #login:checked ~ label.login {
             cursor: default;
             user-select: none;
         }
-        .wrapper .form-container{
+
+        .wrapper .form-container {
             width: 100%;
             overflow: hidden;
         }
-        .form-container .form-inner{
+
+        .form-container .form-inner {
             display: flex;
             width: 200%;
         }
-        .form-container .form-inner form{
+
+        .form-container .form-inner form {
             width: 50%;
             transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
         }
-        .form-inner form .field{
+
+        .form-inner form .field {
             height: 50px;
             width: 100%;
             margin-top: 20px;
         }
-        .form-inner form .field input{
+
+        .form-inner form .field input {
             height: 100%;
             width: 100%;
             outline: none;
@@ -127,53 +145,63 @@
             font-size: 17px;
             transition: all 0.3s ease;
         }
-        .form-inner form .field input:focus{
-            border-color: #1a75ff;
-            /* box-shadow: inset 0 0 3px #fb6aae; */
+
+        .form-inner form .field input:focus {
+            border-color: #1a75ff; /* Viola scuro */
         }
-        .form-inner form .field input::placeholder{
+
+        .form-inner form .field input::placeholder {
             color: #999;
             transition: all 0.3s ease;
         }
-        form .field input:focus::placeholder{
-            color: #1a75ff;
+
+        form .field input:focus::placeholder {
+            color: #1a75ff; /* Viola scuro */
         }
-        .form-inner form .pass-link{
+
+        .form-inner form .pass-link {
             margin-top: 5px;
         }
-        .form-inner form .signup-link{
+
+        .form-inner form .signup-link {
             text-align: center;
             margin-top: 30px;
         }
+
         .form-inner form .pass-link a,
-        .form-inner form .signup-link a{
-            color: #1a75ff;
+        .form-inner form .signup-link a {
+            color: #1a75ff; /* Viola scuro */
             text-decoration: none;
         }
+
         .form-inner form .pass-link a:hover,
-        .form-inner form .signup-link a:hover{
+        .form-inner form .signup-link a:hover {
             text-decoration: underline;
         }
-        form .btn{
+
+        form .btn {
             height: 50px;
             width: 100%;
             border-radius: 15px;
             position: relative;
             overflow: hidden;
         }
-        form .btn .btn-layer{
+
+        form .btn .btn-layer {
             height: 100%;
             width: 300%;
             position: absolute;
             left: -100%;
-            background: -webkit-linear-gradient(right,#003366,#004080,#ff00ff,#0073e6);
+            background: -webkit-linear-gradient(right,#663399,#663399,#663399,#663399); /* Viola scuro */
             border-radius: 15px;
-            transition: all 0.4s ease;;
+            transition: all 0.4s ease;
         }
-        form .btn:hover .btn-layer{
+
+        form .btn:hover .btn-layer {
             left: 0;
         }
-        form .btn input[type="submit"]{
+
+        form .btn input[type="submit"] {
             height: 100%;
             width: 100%;
             z-index: 1;
@@ -188,6 +216,8 @@
             cursor: pointer;
         }
     </style>
+
+
 </head>
 <body>
 <div class="wrapper">
@@ -196,6 +226,7 @@
         <div class="title signup">Signup Form</div>
     </div>
     <div class="form-container">
+        <div id="registrationMessage" style="display: none; color: red; text-align: center; margin-top: 10px;">Devi prima registrarti prima di fare il login.</div>
         <div class="slide-controls">
             <input type="radio" name="slide" id="login" checked>
             <input type="radio" name="slide" id="signup">
@@ -222,6 +253,9 @@
             <!-- Form di registrazione -->
             <form action="RegistrazioneServlet" method="post" class="signup">
                 <div class="field">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="field">
                     <input type="text" name="username" placeholder="Username" required>
                 </div>
                 <div class="field">
@@ -235,6 +269,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
     const loginText = document.querySelector(".title-text .login");
@@ -256,6 +291,7 @@
     });
 
 </script>
+
 </body>
 
 </html>
