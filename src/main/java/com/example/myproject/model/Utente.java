@@ -5,6 +5,7 @@ public class Utente {
     private String username;
     private String password;
     private String email;
+    private Ruolo ruolo;
 
     public Utente() {
     }
@@ -18,7 +19,8 @@ public class Utente {
         this.id = id;
     }
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
@@ -41,4 +43,14 @@ public class Utente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Ruolo getRole() {
+        return ruolo;
+    }
+
+    public void setRole(Ruolo ruolo) {
+        this.ruolo = ruolo;
+    }
+
+
 }
