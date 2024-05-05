@@ -1,6 +1,7 @@
 package com.example.myproject.controller;
 
 import com.example.myproject.config.DatabaseConnection;
+import com.example.myproject.model.Libro;
 import com.example.myproject.model.Utente;
 import com.example.myproject.model.Ruolo;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.*;
+import java.util.List;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -25,16 +27,15 @@ public class LoginServlet extends HttpServlet {
                 // Ottieni il nome utente dell'utente autenticato
                 String nomeUtente = utente.getUsername();
 
-                // Messaggio di benvenuto personalizzato
-                String messaggioBenvenuto = "Benvenuto Amministratore: " + nomeUtente + "!";
                 if (utente.getRole() == Ruolo.UTENTE_ADMIN) {
                     // L'utente è un amministratore. Reindirizza alla pagina degli utenti.
                     request.setAttribute("utenti", dbConnection.getUtenti());
-                    request.setAttribute("messaggioBenvenuto", messaggioBenvenuto);
                     request.getRequestDispatcher("/homepageAdmin.jsp").forward(request, response);
                 } else {
-                    // L'utente è autenticato con successo. Reindirizza alla pagina principale.
-                    response.sendRedirect("home.jsp");
+                    // L'utente è autenticato con successo. Recupera i libri dal database.
+                    List<Libro> libri = dbConnection.getLibri();
+                    request.setAttribute("libri", libri);
+                    request.getRequestDispatcher("/home.jsp").forward(request, response);
                 }
             } else {
                 // Autenticazione fallita. Reindirizza alla pagina di login con un messaggio di errore.

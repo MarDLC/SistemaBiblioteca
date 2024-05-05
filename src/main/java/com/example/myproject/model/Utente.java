@@ -45,10 +45,12 @@ public class Utente {
     }
 
     public Ruolo getRole() {
+
         return ruolo;
     }
 
     public void setRole(Ruolo ruolo) {
+
         this.ruolo = ruolo;
     }
 

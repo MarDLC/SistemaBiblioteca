@@ -1,33 +1,96 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f2e6ff; /* Colore di sfondo viola chiaro */
-    color: #333; /* Testo nero */
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2e6ff; /* Sfondo viola chiaro */
 }
+
+.book-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Allinea i libri a sinistra */
+}
+
+.book-cover {
+    width: 100%; /* Larghezza fissa */
+    height: 200px; /* Altezza fissa */
+    object-fit: cover; /* Mantiene le proporzioni dell'immagine */
+    display: block; /* Aggiunto per garantire che l'altezza sia rispettata */
+    max-width: 100%; /* Aggiunto per garantire che l'immagine non superi la larghezza del contenitore */
+    max-height: 200px; /* Aggiunto per garantire che l'immagine non superi l'altezza fissata */
+}
+
+.book {
+    border: 1px solid #ccc;
+    margin: 5px; /* Riduce lo spazio tra i libri */
+    padding: 10px;
+    width: calc(100% - 10px); /* Ridotto da 25% a 100% per dispositivi piccoli */
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+
+.book h3 {
+    font-weight: 600; /* Titolo del libro in grassetto */
+}
+
+.book p {
+    font-weight: 500; /* Dettagli del libro in grassetto */
+}
+
+.btn {
+    height: 50px;
+    width: 100%;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    background: none;
+    border: 1px solid #663399; /* Bordi viola scuro */
+    color: #663399; /* Testo viola scuro */
+    padding-left: 0;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px; /* Margine sopra il bottone */
+    transition: all 0.4s ease;
+}
+
+.btn:hover {
+    background: #663399; /* Sfondo viola scuro al passaggio del mouse */
+    color: #fff; /* Testo bianco al passaggio del mouse */
+}
+
+/* Aggiunto media query per schermi di dimensioni medie (tablet, piccoli laptop) */
+@media (min-width: 600px) {
+    .book {
+        width: calc(50% - 10px); /* 2 libri per riga */
+    }
+}
+
+/* Aggiunto media query per schermi di dimensioni grandi (desktop) */
+@media (min-width: 900px) {
+    .book {
+        width: calc(25% - 10px); /* 4 libri per riga */
+    }
+}
+
+/* Aggiunto stile per header, nav, main, section e footer */
 
 header {
+    padding: 20px;
     background: #663399; /* Viola scuro */
     color: #fff;
-    padding: 20px;
-}
-
-header h1 {
-    margin: 0;
 }
 
 nav ul {
     list-style-type: none;
+    padding: 0;
 }
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 nav ul li a {
@@ -39,55 +102,25 @@ main {
     padding: 20px;
 }
 
-.book-list {
-    margin-bottom: 30px;
-}
-
-.book {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #fff; /* Sfondo bianco */
-}
-
-.book img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.book h3 {
-    color: #663399; /* Testo viola scuro */
-}
-
-.action-buttons {
-    text-align: center;
+section.action-buttons {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
+    background-color: #f2e6ff; /* Sfondo viola chiaro */
 }
 
-.sell-button,
-.borrow-button {
-    display: inline-block;
-    background-color: #663399; /* Viola scuro */
+section.action-buttons a {
+    background: #663399; /* Viola scuro */
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-
-.sell-button:hover,
-.borrow-button:hover {
-    background-color: #4b0082; /* Viola più scuro al passaggio del mouse */
+    border-radius: 15px;
 }
 
 footer {
+    padding: 20px;
     background: #663399; /* Viola scuro */
     color: #fff;
-    padding: 20px;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 

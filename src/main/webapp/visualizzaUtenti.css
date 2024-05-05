@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f2e6ff; /* Colore di sfondo viola chiaro */
+    color: #333; /* Testo nero */
+    height: 100%; /* Imposta l'altezza al 100% dell'altezza del viewport */
+    overflow-y: auto; /* Aggiunge lo scrolling verticale se necessario */
+}
+
+h1 {
+    color: #663399; /* Viola scuro */
+    text-align: center;
+    padding: 20px;
+}
+
+.table-container {
+    width: 100%; /* Imposta la larghezza del contenitore */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Rimuove i doppi bordi */
+}
+
+table td, table th {
+    border: 1px solid #000; /* Bordo nero */
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #b19cd9; /* Viola scuro */
+    color: #000; /* Testo nero */
+    position: sticky;
+    top: 0;
+}
+
+table tr:hover {
+    background-color: #f2e6ff; /* Colore di sfondo viola chiaro */
+}

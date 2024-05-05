@@ -1,7 +1,9 @@
 package com.example.myproject.config;
 
+import com.example.myproject.model.Libro;
 import com.example.myproject.model.Ruolo;
 import com.example.myproject.model.Utente;
+import com.example.myproject.model.Disponibilita;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +27,6 @@ public class DatabaseConnection {
         String sql = "INSERT INTO utenti (username, password, email, ruolo) VALUES (?, ?, ?, ?)";
         try (Connection conn = getConnessione();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
 
             stmt.setString(1, utente.getUsername());
             stmt.setString(2, utente.getPassword());
@@ -73,10 +74,50 @@ public class DatabaseConnection {
                 utente.setEmail(rs.getString("email"));
                 utente.setRole(Ruolo.valueOf(rs.getString("ruolo")));
                 utenti.add(utente);
+                System.out.println("Utente aggiunto: " + utente.getUsername()); // Aggiunto per il debug
             }
         }
 
         return utenti;
     }
-}
+    public void inserisciLibro(Libro libro) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO libri (titolo, autore, genere, anno, immagineCopertina, prezzo, disponibilita) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = getConnessione();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            stmt.setString(1, libro.getTitolo());
+            stmt.setString(2, libro.getAutore());
+            stmt.setString(3, libro.getGenere());
+            stmt.setInt(4, libro.getAnno()); // Modificato per accettare int
+            stmt.setBytes(5, libro.getImmagineCopertina());
+            stmt.setDouble(6, libro.getPrezzo());
+            stmt.setString(7, libro.getDisponibilita().toString()); // Nuovo campo
+
+            stmt.executeUpdate();
+        }
+    }
+
+    public List<Libro> getLibri() throws SQLException, ClassNotFoundException {
+        List<Libro> libri = new ArrayList<>();
+        String sql = "SELECT * FROM libri";
+
+        try (Connection conn = getConnessione();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Libro libro = new Libro();
+                libro.setTitolo(rs.getString("titolo"));
+                libro.setAutore(rs.getString("autore"));
+                libro.setGenere(rs.getString("genere"));
+                libro.setAnno(rs.getInt("anno"));
+                libro.setImmagineCopertina(rs.getBytes("immagineCopertina"));
+                libro.setPrezzo(rs.getDouble("prezzo"));
+                libro.setDisponibilita(Disponibilita.valueOf(rs.getString("disponibilita"))); // Nuovo campo
+                libri.add(libro);
+            }
+        }
+
+        return libri;
+    }
+}
