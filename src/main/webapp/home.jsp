@@ -16,6 +16,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">Vendi Libro</a></li>
             <li><a href="#">Prendi in Prestito</a></li>
+            <li><a href="#">Scambia Libro</a></li>
             <li><a href="#">Il Mio Account</a></li>
         </ul>
     </nav>
@@ -34,7 +35,7 @@
             <p>Anno: <%= libro.getAnno() %></p>
             <p>Prezzo: &euro;<%= libro.getPrezzo() %></p>
             <p>Disponibilita: <%= libro.getDisponibilita() %></p>
-            <button class="btn">Compra</button> <!-- Aggiunta la classe "btn" -->
+            <button class="btn">Prendi in Prestito</button> <!-- Aggiunta la classe "btn" -->
         </div>
         <% } %>
     </div>

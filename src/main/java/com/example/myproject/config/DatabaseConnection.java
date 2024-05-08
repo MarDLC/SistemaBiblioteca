@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseConnection {
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/BibliotecaDB";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/Bibliotecadb";
     private static final String DATABASE_USER = "root";
-    private static final String DATABASE_PASSWORD = "admin";
+    private static final String DATABASE_PASSWORD = "adminadmin";
     private static Connection connection;
 
     public static Connection getConnessione() throws SQLException, ClassNotFoundException {
@@ -21,6 +21,10 @@ public class DatabaseConnection {
             connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
         }
         return connection;
+    }
+
+    public void setConnessione(Connection connection) {
+        this.connection = connection;
     }
 
     public void inserisciUtente(Utente utente) throws SQLException, ClassNotFoundException {

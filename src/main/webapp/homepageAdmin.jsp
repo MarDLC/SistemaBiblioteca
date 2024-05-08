@@ -14,7 +14,7 @@
 <main>
     <div class="buttons">
         <button id="viewUsersButton" onclick="window.location.href='VisualizzaUtentiServlet'">Visualizza Utenti</button>
-        <button id="banUsersButton" onclick="window.location.href='bannaUtenti.jsp'">Banna Utenti</button>
+        <button id="banUsersButton" onclick="window.location.href='bannaUtenti.jsp'">Ban Utenti</button>
         <button id="addBookButton" onclick="window.location.href='inserisciLibro.jsp'">Inserisci Libro</button>
         <button id="removeBookButton" onclick="window.location.href='rimuoviLibro.jsp'">Rimuovi Libro</button>
 

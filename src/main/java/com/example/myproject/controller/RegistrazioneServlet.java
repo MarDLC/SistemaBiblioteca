@@ -1,6 +1,5 @@
 package com.example.myproject.controller;
 
-
 import com.example.myproject.config.DatabaseConnection;
 import com.example.myproject.model.Utente;
 import com.example.myproject.model.Ruolo;
@@ -18,6 +17,12 @@ public class RegistrazioneServlet extends HttpServlet {
 
     private static final String EMAIL_REGEX = "^(.+)@(\\S+)$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
+    private DatabaseConnection dbConnection;
+
+    public void setDatabaseConnection(DatabaseConnection dbConnection) {
+        this.dbConnection = dbConnection;
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +44,9 @@ public class RegistrazioneServlet extends HttpServlet {
         utente.setRole(Ruolo.UTENTE_REGISTRATO);
 
         try {
-            DatabaseConnection dbConnection = new DatabaseConnection();
+            if (dbConnection == null) {
+                dbConnection = new DatabaseConnection();
+            }
             dbConnection.inserisciUtente(utente);
 
             // Utente registrato con successo. Reindirizza alla pagina di login.
@@ -65,4 +72,3 @@ public class RegistrazioneServlet extends HttpServlet {
         return matcher.matches();
     }
 }
-
