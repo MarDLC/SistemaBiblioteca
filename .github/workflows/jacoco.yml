@@ -17,6 +17,8 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          node-version: '20'
 
       - name: Set up JDK 20
         uses: actions/setup-java@v3
@@ -24,6 +26,7 @@ jobs:
           java-version: '20'
           distribution: 'temurin'
           cache: maven
+          node-version: '20'
 
       - name: Run Coverage
         run: mvn -B test -f pom.xml
@@ -42,6 +45,7 @@ jobs:
         with:
           name: jacoco-report
           path: target/site/jacoco/
+          node-version: '20'
 
       - name: Fail if coverage is below 60%
         run: |
