@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
                 if (utente.getRole() == Ruolo.UTENTE_ADMIN) {
                     // L'utente è un amministratore. Reindirizza alla pagina degli utenti.
                     request.setAttribute("utenti", dbConnection.getUtenti());
+                    request.setAttribute("libri", dbConnection.getLibri());
                     request.getRequestDispatcher("/homepageAdmin.jsp").forward(request, response);
                 } else {
                     // L'utente è autenticato con successo. Recupera i libri dal database.

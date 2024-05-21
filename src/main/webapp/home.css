@@ -124,3 +124,19 @@ footer {
     text-align: center;
 }
 
+.book-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heart-icon {
+    font-size: 3.7em;
+    cursor: pointer;
+    color: #ccc; /* Colore iniziale del cuore */
+    transition: color 0.4s ease;
+}
+
+.heart-icon.liked {
+    color: #663399; /* Colore del cuore quando è cliccato */
+}

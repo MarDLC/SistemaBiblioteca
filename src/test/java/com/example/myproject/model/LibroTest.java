@@ -6,6 +6,30 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class LibroTest {
+
+    @Test
+    public void LibroConParametri() {
+        int id = 1;
+        String titolo = "Il nome della rosa";
+        String autore = "Umberto Eco";
+        String genere = "Giallo";
+        int anno = 1980;
+        byte[] immagineCopertina = new byte[]{0, 1, 2, 3, 4, 5}; // Un esempio di array di byte
+        double prezzo = 19.99;
+        Disponibilita disponibilita = Disponibilita.DISPONIBILE;
+
+        Libro l = new Libro(id, titolo, autore, genere, anno, immagineCopertina, prezzo, disponibilita);
+
+        assertEquals(id, l.getId());
+        assertEquals(titolo, l.getTitolo());
+        assertEquals(autore, l.getAutore());
+        assertEquals(genere, l.getGenere());
+        assertEquals(anno, l.getAnno());
+        assertArrayEquals(immagineCopertina, l.getImmagineCopertina());
+        assertEquals(prezzo, l.getPrezzo(), 0.001);
+        assertEquals(disponibilita, l.getDisponibilita());
+    }
+
     @Test
     public void LibroSenzaParametri() {
         Libro l = new Libro();

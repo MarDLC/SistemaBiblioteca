@@ -38,7 +38,7 @@ public class RegistrazioneServletTest {
         registrazioneServlet = new RegistrazioneServlet();
         registrazioneServlet.setDatabaseConnection(dbConnection);
     }
-
+ //
     @Test
     public void testDoPost() throws Exception {
         when(request.getParameter("email")).thenReturn("test@test.com");

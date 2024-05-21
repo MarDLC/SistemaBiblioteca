@@ -30,7 +30,7 @@ public class VisualizzaUtentiServlet extends HttpServlet {
             }
 
             List<Utente> listaUtenti = dbConnection.getUtenti(); // Ottieni tutti gli utenti dal database
-            System.out.println("Lista Utenti: " + listaUtenti);
+            System.out.println("Lista Utentiii: " + listaUtenti);
             request.setAttribute("listaUtenti", listaUtenti); // Imposta la lista degli utenti come attributo della richiesta
             RequestDispatcher dispatcher = request.getRequestDispatcher("visualizzaUtenti.jsp"); // Reindirizza alla pagina JSP
             dispatcher.forward(request, response);

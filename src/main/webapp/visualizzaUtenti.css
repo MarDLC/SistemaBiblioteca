@@ -38,3 +38,22 @@ table th {
 table tr:hover {
     background-color: #f2e6ff; /* Colore di sfondo viola chiaro */
 }
+
+input[type="submit"] {
+    background-color: #b19cd9; /* Viola scuro */
+    color: #fff; /* Testo bianco */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #663399; /* Viola più scuro al passaggio del mouse */
+}
+
