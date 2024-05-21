@@ -12,12 +12,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>20</maven.compiler.source>
     <maven.compiler.target>20</maven.compiler.target>
-
-    <sonar.host.url>http://localhost:9000</sonar.host.url>
-    <sonar.projectKey>biblioteca</sonar.projectKey>
-    <sonar.projectName>biblioteca</sonar.projectName>
-    <sonar.projectVersion>1.0</sonar.projectVersion>
-    <sonar.login>sqp_9ae51d6eda64832e4df26d3050ba0a3a2ac4ab5a</sonar.login>
   </properties>
 
   <dependencies>
