@@ -13,31 +13,39 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+// Definizione del servlet
 @WebServlet("/VisualizzaUtentiServlet")
-
 public class VisualizzaUtentiServlet extends HttpServlet {
+    // Connessione al database
     private DatabaseConnection dbConnection;
 
+    // Metodo per impostare la connessione al database
     public void setDatabaseConnection(DatabaseConnection dbConnection) {
         this.dbConnection = dbConnection;
     }
 
+    // Metodo GET del servlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            // Se la connessione al database non è stata ancora stabilita, la creo
             if (dbConnection == null) {
                 dbConnection = new DatabaseConnection();
             }
 
-            List<Utente> listaUtenti = dbConnection.getUtenti(); // Ottieni tutti gli utenti dal database
-            System.out.println("Lista Utentiii: " + listaUtenti);
-            request.setAttribute("listaUtenti", listaUtenti); // Imposta la lista degli utenti come attributo della richiesta
-            RequestDispatcher dispatcher = request.getRequestDispatcher("visualizzaUtenti.jsp"); // Reindirizza alla pagina JSP
+            // Ottengo tutti gli utenti dal database
+            List<Utente> listaUtenti = dbConnection.getUtenti();
+            // Imposto la lista degli utenti come attributo della richiesta
+            request.setAttribute("listaUtenti", listaUtenti);
+            // Reindirizzo alla pagina JSP
+            RequestDispatcher dispatcher = request.getRequestDispatcher("visualizzaUtenti.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace(); // Stampa lo stack trace dell'eccezione
-            System.out.println("Messaggio di errore: " + e.getMessage()); // Stampa il messaggio di errore
+            // Gestione delle eccezioni
+            e.printStackTrace();
+            // Imposto un messaggio di errore
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");
+            // Inoltro la richiesta alla pagina JSP
             request.getRequestDispatcher("/homepageAdmin.jsp").forward(request, response);
         }
     }
