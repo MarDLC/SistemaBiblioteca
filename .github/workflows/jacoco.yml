@@ -28,6 +28,14 @@ jobs:
         run: mvn -B package --file pom.xml
       - name: Run tests with coverage
         run: mvn test jacoco:report
+      - name: Check code coverage
+        run: |
+          COVERAGE_PERCENTAGE=$(grep -oP 'Total.*?(\d+)%' target/site/jacoco/index.html | grep -oP '\d+' | tail -n 1)
+          echo "Line Coverage: $COVERAGE_PERCENTAGE%"
+          if [ "$COVERAGE_PERCENTAGE" -lt 90 ]; then
+            echo "Code coverage ($COVERAGE_PERCENTAGE%) is below the acceptable threshold of 90%."
+            exit 1
+          fi
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:

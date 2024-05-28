@@ -28,7 +28,19 @@ CREATE TABLE `utenti`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+
 -- Inserimento di dati nella tabella utenti
 INSERT INTO `utenti` (`username`, `email`, `password`, `ruolo`)
 VALUES ('utente1', 'utente1@example.com', 'password1', 'UTENTE_REGISTRATO'),
        ('utente2', 'utente2@example.com', 'password2', 'UTENTE_ADMIN');
+
+CREATE TABLE libri_preferiti
+(
+    id_libro_preferito int NOT NULL AUTO_INCREMENT,
+    id_utente          int NOT NULL,
+    id_libro           int NOT NULL,
+    PRIMARY KEY (id_libro_preferito),
+    FOREIGN KEY (id_utente) REFERENCES utenti (id),
+    FOREIGN KEY (id_libro) REFERENCES libri (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

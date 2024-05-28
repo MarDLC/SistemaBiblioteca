@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2e6ff; /* Sfondo viola chiaro */
+}
+
+.book-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Allinea i libri a sinistra */
+}
+
+.book-cover {
+    width: 100%; /* Larghezza fissa */
+    height: 200px; /* Altezza fissa */
+    object-fit: cover; /* Mantiene le proporzioni dell'immagine */
+    display: block; /* Aggiunto per garantire che l'altezza sia rispettata */
+    max-width: 100%; /* Aggiunto per garantire che l'immagine non superi la larghezza del contenitore */
+    max-height: 200px; /* Aggiunto per garantire che l'immagine non superi l'altezza fissata */
+}
+
+.book {
+    border: 1px solid #ccc;
+    margin: 5px; /* Riduce lo spazio tra i libri */
+    padding: 10px;
+    width: calc(100% - 10px); /* Ridotto da 25% a 100% per dispositivi piccoli */
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+
+.book h3 {
+    font-weight: 600; /* Titolo del libro in grassetto */
+}
+
+.book p {
+    font-weight: 500; /* Dettagli del libro in grassetto */
+}
+
+.btn {
+    height: 50px;
+    width: 100%;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    background: none;
+    border: 1px solid #663399; /* Bordi viola scuro */
+    color: #663399; /* Testo viola scuro */
+    padding-left: 0;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px; /* Margine sopra il bottone */
+    transition: all 0.4s ease;
+}
+
+.btn:hover {
+    background: #663399; /* Sfondo viola scuro al passaggio del mouse */
+    color: #fff; /* Testo bianco al passaggio del mouse */
+}
+
+/* Aggiunto media query per schermi di dimensioni medie (tablet, piccoli laptop) */
+@media (min-width: 600px) {
+    .book {
+        width: calc(50% - 10px); /* 2 libri per riga */
+    }
+}
+
+/* Aggiunto media query per schermi di dimensioni grandi (desktop) */
+@media (min-width: 900px) {
+    .book {
+        width: calc(25% - 10px); /* 4 libri per riga */
+    }
+}
+
+/* Aggiunto stile per header, nav, main, section e footer */
+
+header {
+    padding: 20px;
+    background: #663399; /* Viola scuro */
+    color: #fff;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section.action-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    background-color: #f2e6ff; /* Sfondo viola chiaro */
+}
+
+section.action-buttons a {
+    background: #663399; /* Viola scuro */
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+footer {
+    padding: 20px;
+    background: #663399; /* Viola scuro */
+    color: #fff;
+    text-align: center;
+}
+
+.book-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heart-icon {
+    font-size: 3.7em;
+    cursor: pointer;
+    color: #ccc; /* Colore iniziale del cuore */
+    transition: color 0.4s ease;
+}
+
+.heart-icon.liked {
+    color: #663399; /* Colore del cuore quando è cliccato */
+}
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+
+.book-table th, .book-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.book-table th {
+    background-color: #663399;
+    color: #fff;
+}
+
+.book-table tr:nth-child(even) {
+    background-color: #f2e6ff;
+}
