@@ -21,10 +21,7 @@ public class LibriPreferitiServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost called"); //riga aggiunta per debug
         String username = request.getParameter("username");
-        /*String password = request.getParameter("password"); */
-        System.out.println("utente2: " + username); // riga debug
 
         try {
             if (dbConnection == null) {
@@ -37,14 +34,12 @@ public class LibriPreferitiServlet extends HttpServlet {
             if (utente != null) {
                 String action = request.getParameter("action");
                 if (action == null) {
-                    System.out.println("action is null");
+
                     return;
                 }
 
                 String idLibroStr = request.getParameter("idLibro");
-                System.out.println("idLibroStr: " + idLibroStr); //riga di debug per idLibro
                 if (idLibroStr == null) {
-                    System.out.println("idLibro is null");
                     return;
                 }
 
@@ -52,19 +47,11 @@ public class LibriPreferitiServlet extends HttpServlet {
                 try {
                     idLibro = Integer.parseInt(idLibroStr);
                 } catch (NumberFormatException e) {
-                    System.out.println("idLibro is not a valid number");
                     return;
                 }
 
-                System.out.println("action: " + action); // Aggiungi questa linea
-                System.out.println("idLibro: " + idLibro); // Aggiungi questa linea
-
 
                 if ("add".equals(action)) {
-                    System.out.println("Aggiungendo libro ai preferiti"); // Aggiungi questa linea
-                    System.out.println("utente: " + utente.getUsername()); // Aggiungi questa linea
-                    System.out.println("idUtente: " + utente.getId()); // Aggiungi questa linea
-                    System.out.println("idLibro: " + idLibro); // Aggiungi questa linea
                     // aggiungi il libro ai preferiti nel database
                     dbConnection.aggiungiLibroAiPreferiti(utente.getId(), idLibro);
                 } else if ("remove".equals(action)) {

@@ -1,43 +1,43 @@
-name: Java CI with Maven
+name: Java CI with Maven  # Nome del workflow
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on:  # Eventi che attivano il workflow
+  push:  # Attiva il workflow quando si effettua una push
+    branches: [ main ]  # Solo per il branch 'main'
+  pull_request:  # Attiva il workflow quando si apre una pull request
+    branches: [ main ]  # Solo per il branch 'main'
 
-jobs:
-  build:
+jobs:  # Lavori da eseguire
+  build:  # Nome del lavoro
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Sistema operativo su cui eseguire il lavoro
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 20
-        uses: actions/setup-java@v2
-        with:
-          java-version: '20'
-          distribution: 'adopt'
-      - name: Cache Maven packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
-      - name: Run tests with coverage
-        run: mvn test jacoco:report
-      - name: Check code coverage
-        run: |
-          COVERAGE_PERCENTAGE=$(grep -oP 'Total.*?(\d+)%' target/site/jacoco/index.html | grep -oP '\d+' | tail -n 1)
-          echo "Line Coverage: $COVERAGE_PERCENTAGE%"
-          if [ "$COVERAGE_PERCENTAGE" -lt 70 ]; then
-            echo "Code coverage ($COVERAGE_PERCENTAGE%) is below the acceptable threshold of 70%."
-            exit 1
+    steps:  # Passaggi del lavoro
+      - uses: actions/checkout@v2  # Utilizza l'azione 'checkout' per ottenere il codice del repository
+      - name: Set up JDK 20  # Nome del passaggio
+        uses: actions/setup-java@v2  # Utilizza l'azione 'setup-java' per configurare Java
+        with:  # Parametri dell'azione
+          java-version: '20'  # Versione di Java da utilizzare
+          distribution: 'adopt'  # Distribuzione di Java da utilizzare
+      - name: Cache Maven packages  # Nome del passaggio
+        uses: actions/cache@v2  # Utilizza l'azione 'cache' per memorizzare in cache i pacchetti Maven
+        with:  # Parametri dell'azione
+          path: ~/.m2  # Percorso della cache
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}  # Chiave della cache
+          restore-keys: ${{ runner.os }}-m2  # Chiavi per il ripristino della cache
+      - name: Build with Maven  # Nome del passaggio
+        run: mvn -B package --file pom.xml  # Comando per eseguire la build con Maven
+      - name: Run tests with coverage  # Nome del passaggio
+        run: mvn test jacoco:report  # Comando per eseguire i test con Jacoco
+      - name: Check code coverage  # Nome del passaggio
+        run: |  # Comando per controllare la copertura del codice
+          COVERAGE_PERCENTAGE=$(grep -oP 'Total.*?(\d+)%' target/site/jacoco/index.html | grep -oP '\d+' | tail -n 1)  # Ottiene la percentuale di copertura
+          echo "Line Coverage: $COVERAGE_PERCENTAGE%"  # Stampa la percentuale di copertura
+          if [ "$COVERAGE_PERCENTAGE" -lt 70 ]; then  # Se la copertura è inferiore al 70%
+            echo "Code coverage ($COVERAGE_PERCENTAGE%) is below the acceptable threshold of 70%."  # Stampa un messaggio di errore
+            exit 1  # Esce con codice di errore 1
           fi
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/
+      - name: Archive code coverage results  # Nome del passaggio
+        uses: actions/upload-artifact@v2  # Utilizza l'azione 'upload-artifact' per caricare i risultati della copertura del codice
+        with:  # Parametri dell'azione
+          name: jacoco-report  # Nome dell'artifact
+          path: target/site/jacoco/  # Percorso dell'artifact
