@@ -64,4 +64,3 @@ public class GestisciLibriServletTest {
         assertEquals("GestisciLibriServlet", stringArgumentCaptor.getValue());
     }
 }
-

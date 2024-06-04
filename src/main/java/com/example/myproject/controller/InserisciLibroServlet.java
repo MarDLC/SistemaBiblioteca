@@ -14,12 +14,17 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/InserisciLibroServlet")  // Annotazione per mappare questa servlet all'URL "/InserisciLibroServlet"
 @MultipartConfig(fileSizeThreshold=1024*1024*2)  // Annotazione per configurare il caricamento di file di dimensioni fino a 2MB
 
 public class InserisciLibroServlet extends HttpServlet {  // La classe estende HttpServlet, quindi è una servlet
     private DatabaseConnection dbConnection;  // Variabile per la connessione al database
+
+    // Logger
+    private static final Logger LOGGER = Logger.getLogger(InserisciLibroServlet.class.getName());
 
     public void setDatabaseConnection(DatabaseConnection dbConnection) {  // Metodo per impostare la connessione al database
         this.dbConnection = dbConnection;
@@ -57,7 +62,7 @@ public class InserisciLibroServlet extends HttpServlet {  // La classe estende H
             // Libro inserito con successo. Reindirizza alla pagina di amministrazione.
             response.sendRedirect("homepageAdmin.jsp");
         } catch (SQLException | ClassNotFoundException e) {  // Gestisce le eccezioni
-            e.printStackTrace();  // Stampa la traccia dello stack dell'eccezione
+            LOGGER.log(Level.SEVERE, e.toString(), e);
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");  // Imposta un attributo di errore nella richiesta
             request.getRequestDispatcher("/inserisciLibro.jsp").forward(request, response);  // Inoltra la richiesta e la risposta alla pagina JSP
         }

@@ -11,17 +11,22 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Definizione del servlet
 @WebServlet("/RegistrazioneServlet")
 public class RegistrazioneServlet extends HttpServlet {
 
     // Espressione regolare per la validazione dell'email
-    private static final String EMAIL_REGEX = "^(.+)@(\\S+)$";
+    private static final String EMAIL_REGEX = "^[^@]+@[^@]+$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
     // Connessione al database
     private DatabaseConnection dbConnection;
+
+    // Logger
+    private static final Logger LOGGER = Logger.getLogger(RegistrazioneServlet.class.getName());
 
     // Metodo per impostare la connessione al database
     public void setDatabaseConnection(DatabaseConnection dbConnection) {
@@ -63,7 +68,7 @@ public class RegistrazioneServlet extends HttpServlet {
             response.sendRedirect("login_registrazione.jsp");
         } catch (SQLException | ClassNotFoundException e) {
             // Gestione delle eccezioni
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
             // Imposto un messaggio di errore
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");
             // Inoltro la richiesta alla pagina di registrazione

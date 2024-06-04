@@ -12,11 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/GestisciLibriServlet")  // Annotazione per mappare questa servlet all'URL "/GestisciLibriServlet"
 
 public class GestisciLibriServlet extends HttpServlet {  // La classe estende HttpServlet, quindi è una servlet
     private DatabaseConnection dbConnection;  // Variabile per la connessione al database
+
+    // Logger
+    private static final Logger LOGGER = Logger.getLogger(GestisciLibriServlet.class.getName());
 
     public void setDatabaseConnection(DatabaseConnection dbConnection) {  // Metodo per impostare la connessione al database
         this.dbConnection = dbConnection;
@@ -35,7 +40,7 @@ public class GestisciLibriServlet extends HttpServlet {  // La classe estende Ht
             RequestDispatcher dispatcher = request.getRequestDispatcher("gestisciLibri.jsp");  // Ottiene un RequestDispatcher per la pagina JSP
             dispatcher.forward(request, response);  // Inoltra la richiesta e la risposta alla pagina JSP
         } catch (SQLException | ClassNotFoundException e) {  // Gestisce le eccezioni
-            e.printStackTrace();  // Stampa la traccia dello stack dell'eccezione
+            LOGGER.log(Level.SEVERE, e.toString(), e);
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");  // Imposta un attributo di errore nella richiesta
             request.getRequestDispatcher("/homepageAdmin.jsp").forward(request, response);  // Inoltra la richiesta e la risposta alla pagina JSP
         }
@@ -56,7 +61,7 @@ public class GestisciLibriServlet extends HttpServlet {  // La classe estende Ht
             // Reindirizza alla pagina di gestione dei libri.
             response.sendRedirect("GestisciLibriServlet");
         } catch (SQLException | ClassNotFoundException e) {  // Gestisce le eccezioni
-            e.printStackTrace();  // Stampa la traccia dello stack dell'eccezione
+            LOGGER.log(Level.SEVERE, e.toString(), e);
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");  // Imposta un attributo di errore nella richiesta
             request.getRequestDispatcher("/gestisciLibri.jsp").forward(request, response);  // Inoltra la richiesta e la risposta alla pagina JSP
         }

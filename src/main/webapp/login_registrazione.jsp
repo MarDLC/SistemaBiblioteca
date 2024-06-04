@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <title>Login/Signup</title>
     <link rel="stylesheet" type="text/css" href="LoginRegistrazione.css">

@@ -49,4 +49,3 @@ public class EliminaUtenteServletTest {
         assertEquals("VisualizzaUtentiServlet", stringArgumentCaptor.getValue());
     }
 }
-

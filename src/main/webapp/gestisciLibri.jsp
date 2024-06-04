@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Visualizza Libri</title>
@@ -12,7 +12,7 @@
 <body>
 <h1>Libri Disponibili</h1>
 <div class="table-container">
-    <table>
+    <table aria-label="Tabella attributi libri disponibili">
         <tr>
             <th>Titolo</th>
             <th>Autore</th>

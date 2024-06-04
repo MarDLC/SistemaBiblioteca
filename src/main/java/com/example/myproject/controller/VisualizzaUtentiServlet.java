@@ -12,12 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Definizione del servlet
 @WebServlet("/VisualizzaUtentiServlet")
 public class VisualizzaUtentiServlet extends HttpServlet {
     // Connessione al database
     private DatabaseConnection dbConnection;
+
+    // Logger
+    private static final Logger LOGGER = Logger.getLogger(VisualizzaUtentiServlet.class.getName());
 
     // Metodo per impostare la connessione al database
     public void setDatabaseConnection(DatabaseConnection dbConnection) {
@@ -42,7 +47,7 @@ public class VisualizzaUtentiServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (SQLException | ClassNotFoundException e) {
             // Gestione delle eccezioni
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
             // Imposto un messaggio di errore
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");
             // Inoltro la richiesta alla pagina JSP

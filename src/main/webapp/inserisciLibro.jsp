@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <title>Inserisci Libro</title>
     <link rel="stylesheet" type="text/css" href="inserisciLibro.css">

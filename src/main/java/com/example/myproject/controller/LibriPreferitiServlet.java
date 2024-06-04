@@ -10,12 +10,17 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Definizione del servlet
 @WebServlet("/LibriPreferitiServlet")
 public class LibriPreferitiServlet extends HttpServlet {
     // Connessione al database
     private DatabaseConnection dbConnection;
+
+    // Logger
+    private static final Logger LOGGER = Logger.getLogger(LibriPreferitiServlet.class.getName());
 
     // Metodo per impostare la connessione al database
     public void setDatabaseConnection(DatabaseConnection dbConnection) {
@@ -84,7 +89,7 @@ public class LibriPreferitiServlet extends HttpServlet {
             }
         } catch (SQLException | ClassNotFoundException e) {
             // Gestione delle eccezioni
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
             // Imposto un messaggio di errore
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");
             // Inoltro la richiesta alla pagina JSP
@@ -123,7 +128,7 @@ public class LibriPreferitiServlet extends HttpServlet {
             }
         } catch (SQLException | ClassNotFoundException e) {
             // Gestione delle eccezioni
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
             // Imposto un messaggio di errore
             request.setAttribute("errorMessage", "Si è verificato un errore. Riprova.");
             // Inoltro la richiesta alla pagina JSP

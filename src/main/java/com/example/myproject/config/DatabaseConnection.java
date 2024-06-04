@@ -8,12 +8,31 @@ import com.example.myproject.model.Disponibilita;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.io.InputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/bibliotecadb";
-    private static final String DATABASE_USER = "root";
-    private static final String DATABASE_PASSWORD = "adminadmin";
+    private static String DATABASE_USER;
+    private static String DATABASE_PASSWORD;
     private static Connection connection;
+
+    // Logger
+    private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
+
+    static {
+        try (InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            DATABASE_USER = prop.getProperty("DATABASE_USER");
+            DATABASE_PASSWORD = prop.getProperty("DATABASE_PASSWORD");
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, ex.toString(), ex);
+        }
+    }
 
     // Metodo per ottenere la connessione al database
     public static Connection getConnessione() throws SQLException, ClassNotFoundException {
@@ -25,7 +44,6 @@ public class DatabaseConnection {
         // Restituisce l'oggetto Connection
         return connection;
     }
-
     // Metodo per impostare la connessione al database
     public void setConnessione(Connection connection) {
         this.connection = connection;

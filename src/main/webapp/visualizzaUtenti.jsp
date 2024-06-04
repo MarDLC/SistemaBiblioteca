@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Visualizza Utenti</title>
@@ -11,7 +11,8 @@
 <body>
 <h1>Utenti Nel Sistema</h1>
 <div class="table-container">
-    <table>
+    <table aria-label="Tabella degli utenti">
+
         <tr>
             <th>Username</th>
             <th>Email</th>

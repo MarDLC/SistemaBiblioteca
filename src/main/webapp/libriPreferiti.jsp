@@ -6,7 +6,7 @@
     String username = request.getParameter("username");
 %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Libri Preferiti</title>
@@ -25,7 +25,7 @@
     </nav>
 </header>
 <h1>La tua lista di libri preferiti</h1>
-<table class="book-table">
+<table class="book-table" aria-label="Attributi libri preferiti" >
     <thead>
      <tr>
         <th>Titolo</th>
